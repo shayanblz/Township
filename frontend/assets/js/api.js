@@ -43,11 +43,26 @@ async function apiFetch(path, { method = "GET", body, auth = true } = {}) {
     let message = "خطایی رخ داد؛ دوباره تلاش کنید";
     if (data) {
       if (typeof data.detail === "string") message = data.detail;
-      else if (Array.isArray(data.detail) && data.detail[0]) message = data.detail[0].msg;
+      else if (Array.isArray(data.detail) && data.detail[0]) {
+        message = translateValidationError(data.detail[0].msg);
+      }
     }
     throw new Error(message);
   }
   return data;
+}
+
+/* ترجمه پیام‌های اعتبارسنجی رایج به فارسی */
+function translateValidationError(msg) {
+  if (!msg) return "داده واردشده معتبر نیست";
+  const m = String(msg).toLowerCase();
+  if (m.includes("email")) return "ایمیل واردشده معتبر نیست";
+  if (m.includes("شماره موبایل")) return "شماره موبایل معتبر نیست (مثال: ۰۹۱۲۱۲۳۴۵۶۷)";
+  if (m.includes("password")) return "رمز عبور باید حداقل ۶ کاراکتر باشد";
+  if (m.includes("full_name")) return "نام و نام خانوادگی را کامل وارد کنید";
+  if (m.includes("too short") || m.includes("at least")) return "مقدار واردشده کوتاه است";
+  if (m.includes("required")) return "لطفاً همه فیلدها را پر کنید";
+  return msg;
 }
 
 /* فرمت مبلغ به تومان با ارقام فارسی */
