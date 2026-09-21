@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ورود ساکنین | شهرک مسکونی آفتاب</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌇</text></svg>" />
+</head>
+<body class="auth-page">
+  <div class="auth-card">
+    <a href="/" class="brand"><span class="logo">🌇</span> شهرک مسکونی آفتاب</a>
+    <h1>ورود ساکنین</h1>
+    <p class="sub">به پنل آنلاین شهرک خوش آمدید</p>
+
+    <div class="alert" id="form-alert"></div>
+
+    <form id="login-form" novalidate>
+      <div class="field">
+        <label for="email">ایمیل</label>
+        <input type="email" id="email" required placeholder="you@example.com" style="direction:ltr" autocomplete="email" />
+      </div>
+      <div class="field">
+        <label for="password">رمز عبور</label>
+        <input type="password" id="password" required placeholder="••••••••" style="direction:ltr" autocomplete="current-password" />
+      </div>
+      <button type="submit" class="btn btn-primary btn-block" id="submit-btn">ورود به پنل</button>
+    </form>
+
+    <p class="auth-switch">حساب کاربری ندارید؟ <a href="/register.html">همین حالا عضو شوید</a></p>
+    <p class="form-hint" style="text-align:center; margin-top:14px;">حساب آزمایشی: <span style="direction:ltr; display:inline-block;">demo@shahrak.ir / demo1234</span></p>
+  </div>
+
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script>initAuthPage("login");</script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>پنل ساکنین | شهرک مسکونی آفتاب</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌇</text></svg>" />
+</head>
+<body>
+
+  <header class="dash-topbar">
+    <div class="container">
+      <a href="/" class="brand"><span class="logo">🌇</span> شهرک مسکونی آفتاب</a>
+      <div class="dash-user">
+        <div class="avatar" id="user-avatar">؟</div>
+        <div>
+          <b id="user-name">…</b><br />
+          <span style="color: var(--ink-soft); font-size: 12px;" id="user-unit"></span>
+        </div>
+        <button class="btn btn-outline btn-sm" id="logout-btn" style="margin-inline-start: 8px;">خروج</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" style="padding-bottom: 60px;">
+    <div class="dash-tabs">
+      <button class="dash-tab active" data-panel="overview">پیش‌خوان</button>
+      <button class="dash-tab" data-panel="bills">شارژ و قبوض</button>
+      <button class="dash-tab" data-panel="payments">تاریخچه پرداخت‌ها</button>
+      <button class="dash-tab" data-panel="profile">پروفایل</button>
+    </div>
+
+    <!-- پیش‌خوان -->
+    <section class="panel active" id="panel-overview">
+      <div class="cards-row">
+        <div class="stat-card warn"><div class="label">مبلغ بدهی</div><div class="value"><span id="ov-unpaid-total">۰</span> <small>تومان</small></div></div>
+        <div class="stat-card"><div class="label">قبوض پرداخت‌نشده</div><div class="value"><span id="ov-unpaid-count">۰</span> <small>مورد</small></div></div>
+        <div class="stat-card accent"><div class="label">مجموع پرداخت‌شده</div><div class="value"><span id="ov-paid-total">۰</span> <small>تومان</small></div></div>
+        <div class="stat-card"><div class="label">تعداد پرداخت‌ها</div><div class="value"><span id="ov-paid-count">۰</span> <small>مورد</small></div></div>
+      </div>
+      <div class="box">
+        <h3>🕓 نزدیک‌ترین قبوض برای پرداخت</h3>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>عنوان</th><th>دسته</th><th>مبلغ</th><th>سررسید</th><th>وضعیت</th><th></th></tr></thead>
+            <tbody id="ov-bills-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- شارژ و قبوض -->
+    <section class="panel" id="panel-bills">
+      <div class="dash-tabs" style="margin-top: 0;">
+        <button class="dash-tab active" data-filter="">همه</button>
+        <button class="dash-tab" data-filter="unpaid">پرداخت‌نشده</button>
+        <button class="dash-tab" data-filter="paid">پرداخت‌شده</button>
+      </div>
+      <div class="box">
+        <h3>🧾 فهرست شارژ و قبوض</h3>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>عنوان</th><th>دسته</th><th>مبلغ (تومان)</th><th>سررسید</th><th>وضعیت</th><th>عملیات</th></tr></thead>
+            <tbody id="bills-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- تاریخچه پرداخت‌ها -->
+    <section class="panel" id="panel-payments">
+      <div class="box">
+        <h3>💳 پرداخت‌های انجام‌شده</h3>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>بابت</th><th>مبلغ (تومان)</th><th>کد پیگیری</th><th>تاریخ پرداخت</th></tr></thead>
+            <tbody id="payments-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- پروفایل -->
+    <section class="panel" id="panel-profile">
+      <div class="box">
+        <h3>👤 اطلاعات حساب</h3>
+        <div class="alert" id="profile-alert"></div>
+        <form id="profile-form">
+          <div class="form-row">
+            <div class="field"><label for="p-name">نام و نام خانوادگی</label><input type="text" id="p-name" /></div>
+            <div class="field"><label for="p-email">ایمیل (غیرقابل تغییر)</label><input type="email" id="p-email" disabled style="background:#f4f1ea" /></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label for="p-phone">شماره موبایل</label><input type="tel" id="p-phone" style="direction:ltr" /></div>
+            <div class="field">
+              <label>بلوک / واحد</label>
+              <div style="display:flex; gap:10px;">
+                <input type="text" id="p-block" placeholder="بلوک" />
+                <input type="text" id="p-unit" placeholder="واحد" />
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">ذخیره تغییرات</button>
+        </form>
+      </div>
+
+      <div class="box">
+        <h3>🔒 تغییر رمز عبور</h3>
+        <div class="alert" id="password-alert"></div>
+        <form id="password-form">
+          <div class="form-row">
+            <div class="field"><label for="pw-current">رمز عبور فعلی</label><input type="password" id="pw-current" style="direction:ltr" /></div>
+            <div class="field"><label for="pw-new">رمز عبور جدید</label><input type="password" id="pw-new" minlength="6" style="direction:ltr" /></div>
+          </div>
+          <button type="submit" class="btn btn-outline">تغییر رمز عبور</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- مودال پرداخت -->
+  <div class="modal-backdrop" id="pay-modal">
+    <div class="modal" id="pay-modal-content"><!-- با جاوااسکریپت پر می‌شود --></div>
+  </div>
+
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/dashboard.js"></script>
+</body>
+</html>
