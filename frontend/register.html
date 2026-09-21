@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>عضویت ساکنین | شهرک مسکونی آفتاب</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌇</text></svg>" />
+</head>
+<body class="auth-page">
+  <div class="auth-card">
+    <a href="/" class="brand"><span class="logo">🌇</span> شهرک مسکونی آفتاب</a>
+    <h1>عضویت ساکنین</h1>
+    <p class="sub">حساب خود را بسازید و به پنل آنلاین دسترسی پیدا کنید</p>
+
+    <div class="alert" id="form-alert"></div>
+
+    <form id="register-form" novalidate>
+      <div class="field">
+        <label for="full_name">نام و نام خانوادگی</label>
+        <input type="text" id="full_name" required placeholder="مثلاً سارا محمدی" autocomplete="name" />
+      </div>
+      <div class="form-row">
+        <div class="field">
+          <label for="block">بلوک</label>
+          <input type="text" id="block" placeholder="مثلاً A" />
+        </div>
+        <div class="field">
+          <label for="unit">شماره واحد</label>
+          <input type="text" id="unit" placeholder="مثلاً 12" />
+        </div>
+      </div>
+      <div class="field">
+        <label for="phone">شماره موبایل</label>
+        <input type="tel" id="phone" required placeholder="۰۹۱۲۱۲۳۴۵۶۷" style="direction:ltr" autocomplete="tel" />
+      </div>
+      <div class="field">
+        <label for="email">ایمیل</label>
+        <input type="email" id="email" required placeholder="you@example.com" style="direction:ltr" autocomplete="email" />
+      </div>
+      <div class="field">
+        <label for="password">رمز عبور</label>
+        <input type="password" id="password" required minlength="6" placeholder="حداقل ۶ کاراکتر" style="direction:ltr" autocomplete="new-password" />
+      </div>
+      <button type="submit" class="btn btn-primary btn-block" id="submit-btn">ایجاد حساب و ورود</button>
+    </form>
+
+    <p class="auth-switch">قبلاً ثبت‌نام کرده‌اید؟ <a href="/login.html">وارد شوید</a></p>
+  </div>
+
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script>initAuthPage("register");</script>
+</body>
+</html>
